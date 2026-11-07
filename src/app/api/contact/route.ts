@@ -65,6 +65,13 @@ export async function POST(request: Request) {
         consent_contact: data.consentContact,
         source: "contact_form",
         city: siteConfig.serviceArea.primary,
+        utm_source: data.utmSource ?? null,
+        utm_medium: data.utmMedium ?? null,
+        utm_campaign: data.utmCampaign ?? null,
+        utm_term: data.utmTerm ?? null,
+        utm_content: data.utmContent ?? null,
+        referrer: data.referrer ?? null,
+        landing_page: data.landingPage ?? null,
       })
       .select("id")
       .single();

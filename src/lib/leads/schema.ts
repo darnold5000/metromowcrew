@@ -92,6 +92,13 @@ export const contactRequestSchema = z.object({
   consentContact: z
     .boolean()
     .refine((v) => v === true, "Consent to be contacted is required"),
+  utmSource: z.string().max(200).optional().nullable(),
+  utmMedium: z.string().max(200).optional().nullable(),
+  utmCampaign: z.string().max(200).optional().nullable(),
+  utmTerm: z.string().max(200).optional().nullable(),
+  utmContent: z.string().max(200).optional().nullable(),
+  referrer: z.string().max(500).optional().nullable(),
+  landingPage: z.string().max(500).optional().nullable(),
 });
 
 export type ContactRequestInput = z.infer<typeof contactRequestSchema>;

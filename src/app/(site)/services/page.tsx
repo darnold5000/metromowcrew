@@ -23,7 +23,7 @@ export default function ServicesPage() {
           description={`Choose a service, or ${siteConfig.estimateCta.toLowerCase()} and we’ll confirm scope for your property.`}
         />
         <div className="mt-8">
-          <ButtonLink href="/request-estimate">{siteConfig.estimateCta}</ButtonLink>
+          <ButtonLink href={siteConfig.quoteHref}>{siteConfig.estimateCta}</ButtonLink>
         </div>
       </Section>
       <Section className="pt-10">

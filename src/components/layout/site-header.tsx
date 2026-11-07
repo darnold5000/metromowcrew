@@ -38,7 +38,7 @@ export function SiteHeader() {
             {siteConfig.phoneDisplay}
           </a>
           <Link
-            href="/request-estimate"
+            href={siteConfig.quoteHref}
             className="rounded-md bg-accent px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-accent-hover"
           >
             {siteConfig.estimateCta}
@@ -83,7 +83,7 @@ export function SiteHeader() {
             Call {siteConfig.phoneDisplay}
           </a>
           <Link
-            href="/request-estimate"
+            href={siteConfig.quoteHref}
             className="mt-2 rounded-md bg-accent px-3 py-3 text-center text-base font-semibold text-white"
             onClick={() => setOpen(false)}
           >

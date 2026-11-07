@@ -40,7 +40,7 @@ export default function ServiceAreaPage() {
           </div>
         </div>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <ButtonLink href="/request-estimate">{siteConfig.estimateCta}</ButtonLink>
+          <ButtonLink href={siteConfig.quoteHref}>{siteConfig.estimateCta}</ButtonLink>
           <ButtonLink href={siteConfig.phoneHref} variant="secondary">
             {siteConfig.phoneDisplay}
           </ButtonLink>

@@ -28,6 +28,8 @@ See `.env.example`.
 | `SUPABASE_SERVICE_ROLE_KEY` | Server-only lead inserts & uploads |
 | `METROMOWCREW_TENANT_ID` | `select id from tenants where slug = 'metromowcrew'` (legacy `WEIDNER_TENANT_ID` still works) |
 | `RESEND_API_KEY` / `EMAIL_FROM` / `ADMIN_NOTIFY_EMAIL` | Transactional email |
+| `NEXT_PUBLIC_JOBBER_EMBED_SRC` | Jobber request form iframe src (or full Copy code HTML) for `/request-quote` |
+| `NEXT_PUBLIC_JOBBER_REQUEST_URL` | Optional Jobber request URL if the embed is blocked |
 
 Search indexing is **hardcoded off** (`siteAllowIndexing` in `src/config/site.ts`) until you explicitly opt in for launch.
 

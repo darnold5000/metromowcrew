@@ -1,4 +1,4 @@
-import { METROMOWCREW_TENANT_ID_ENV } from "@/lib/tenant/deployment";
+import { METROMOWCREW_TENANT_ID_ENV } from "./deployment";
 
 /**
  * Reject client-supplied tenant identifiers.

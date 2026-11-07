@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { parseAttributionFromSearchParams } from "@/lib/attribution/parse";
 import { siteConfig } from "@/config/site";
 
 export function ContactForm() {
@@ -22,10 +23,18 @@ export function ContactForm() {
     setSubmitting(true);
     setError(null);
     try {
+      const attribution =
+        typeof window === "undefined"
+          ? {}
+          : parseAttributionFromSearchParams(
+              new URLSearchParams(window.location.search),
+              window.location.pathname,
+              document.referrer || null,
+            );
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, ...attribution }),
       });
       const json = await res.json();
       if (!res.ok || !json.ok) throw new Error(json.error || "Failed");

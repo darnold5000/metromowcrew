@@ -17,7 +17,11 @@ export const faqs: FaqItem[] = [
   },
   {
     question: "How do I request an estimate?",
-    answer: `Use the ${siteConfig.estimateCta} form on this site, or call ${siteConfig.phoneDisplay}. Include your address, the service you need, and photos if you have them.`,
+    answer: `Use ${siteConfig.estimateCta} for lawn work — that request goes to Jobber. Use ${siteConfig.contactCta} for general questions or to speak with the owner. Don’t submit the same request on both forms.`,
+  },
+  {
+    question: "What’s the difference between quote and contact?",
+    answer: `${siteConfig.estimateCta} is for service quotes in Jobber. ${siteConfig.contactCta} is the website inquiry form for questions. Jobber submissions are not copied into the contact form.`,
   },
   {
     question: "What services do you offer?",

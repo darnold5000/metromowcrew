@@ -76,7 +76,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               {service.description}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/request-estimate">{siteConfig.estimateCta}</ButtonLink>
+              <ButtonLink href={siteConfig.quoteHref}>{siteConfig.estimateCta}</ButtonLink>
               <ButtonLink href={siteConfig.phoneHref} variant="secondary">
                 Call {siteConfig.phoneDisplay}
               </ButtonLink>
@@ -176,7 +176,7 @@ export default async function ServiceDetailPage({ params }: Props) {
           <p className="mt-3 text-sand/85">
             {siteConfig.estimateCta} and we’ll follow up about next steps.
           </p>
-          <ButtonLink href="/request-estimate" className="mt-6">
+          <ButtonLink href={siteConfig.quoteHref} className="mt-6">
             {siteConfig.estimateCta}
           </ButtonLink>
         </div>

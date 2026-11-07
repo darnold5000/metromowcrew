@@ -35,7 +35,7 @@ export default function ReviewsPage() {
           ))}
         </ul>
         <div className="mt-10">
-          <ButtonLink href="/request-estimate">{siteConfig.estimateCta}</ButtonLink>
+          <ButtonLink href={siteConfig.quoteHref}>{siteConfig.estimateCta}</ButtonLink>
         </div>
       </Section>
     </>

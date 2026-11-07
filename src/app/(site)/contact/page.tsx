@@ -1,6 +1,6 @@
-import { ButtonLink } from "@/components/ui/button-link";
-import { Section, SectionHeading } from "@/components/ui/section";
+import { FormChoice } from "@/components/forms/form-choice";
 import { ContactForm } from "@/components/forms/contact-form";
+import { Section, SectionHeading } from "@/components/ui/section";
 import { siteConfig } from "@/config/site";
 import { createPageMetadata } from "@/lib/metadata";
 import { MapPin, Phone } from "lucide-react";
@@ -16,10 +16,11 @@ export default function ContactPage() {
     <>
       <Section className="bg-sand/40 pt-16">
         <SectionHeading
-          eyebrow="Contact"
-          title="Let’s talk about your property"
-          description={siteConfig.responseTime}
+          eyebrow={siteConfig.contactCta}
+          title="Questions or a conversation with the owner"
+          description="Use this page for general questions. For mowing, mulching, aeration, or a clean-up quote, use Get a Free Quote instead so the request goes to Jobber."
         />
+        <FormChoice active="contact" />
       </Section>
       <Section>
         <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
@@ -43,14 +44,14 @@ export default function ContactPage() {
                 </p>
               </div>
             </div>
-            <ButtonLink href="/request-estimate">{siteConfig.estimateCta}</ButtonLink>
           </div>
           <div className="rounded-xl border border-border bg-surface p-6 sm:p-8">
             <h2 className="font-display text-2xl text-evergreen-deep">
               Send a message
             </h2>
             <p className="mt-2 text-sm text-muted">
-              For project quotes, the estimate form collects more useful details.
+              This form notifies our team. It does not create a Jobber quote
+              request.
             </p>
             <div className="mt-6">
               <ContactForm />

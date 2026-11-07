@@ -54,11 +54,11 @@ export default function FaqPage() {
           ))}
         </div>
         <div className="mt-10">
-          <p className="text-muted">Still have a question?</p>
+          <p className="text-muted">Need lawn work or have a question?</p>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href="/contact">Contact us</ButtonLink>
-            <ButtonLink href={siteConfig.phoneHref} variant="secondary">
-              Call {siteConfig.phoneDisplay}
+            <ButtonLink href={siteConfig.quoteHref}>{siteConfig.estimateCta}</ButtonLink>
+            <ButtonLink href={siteConfig.contactHref} variant="secondary">
+              {siteConfig.contactCta}
             </ButtonLink>
           </div>
         </div>

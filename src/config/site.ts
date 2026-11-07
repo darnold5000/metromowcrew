@@ -24,7 +24,10 @@ export const siteConfig = {
       "Fully licensed and insured",
     ],
   },
-  estimateCta: "Get an Estimate",
+  estimateCta: "Get a Free Quote",
+  quoteHref: "/request-quote",
+  contactCta: "Contact Us",
+  contactHref: "/contact",
   description:
     "Your go-to for landscaping and lawn care in Indianapolis, Avon, Plainfield, and nearby areas — mowing, aeration, mulching, yard clean-up, and more.",
   siteUrl: resolveSiteUrl(),
@@ -73,7 +76,8 @@ export const siteConfig = {
       hours: "Call or request an estimate",
     },
   ],
-  responseTime: "Complete the estimate form and we’ll follow up about next steps.",
+  responseTime:
+    "Need lawn work? Use Get a Free Quote. Have a question or want to talk with the owner? Use Contact Us.",
   developer: {
     name: "Signal Works",
     platformLabel: "Signal Works Platform",

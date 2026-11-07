@@ -46,7 +46,7 @@ export default function ProjectsPage() {
           <h2 className="font-display text-2xl sm:text-3xl">
             {siteConfig.estimateCta}
           </h2>
-          <ButtonLink href="/request-estimate" className="mt-6">
+          <ButtonLink href={siteConfig.quoteHref} className="mt-6">
             {siteConfig.estimateCta}
           </ButtonLink>
         </div>

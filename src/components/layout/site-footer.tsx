@@ -33,7 +33,7 @@ export function SiteFooter() {
               </li>
             ))}
             <li>
-              <Link href="/request-estimate" className="hover:text-white">
+              <Link href={siteConfig.quoteHref} className="hover:text-white">
                 {siteConfig.estimateCta}
               </Link>
             </li>
@@ -83,8 +83,13 @@ export function SiteFooter() {
               </a>
             </li>
             <li>
-              <Link href="/request-estimate" className="font-semibold text-white hover:underline">
-                Free Estimates
+              <Link href={siteConfig.quoteHref} className="font-semibold text-white hover:underline">
+                {siteConfig.estimateCta}
+              </Link>
+            </li>
+            <li>
+              <Link href={siteConfig.contactHref} className="hover:text-white">
+                {siteConfig.contactCta}
               </Link>
             </li>
           </ul>

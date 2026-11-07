@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
       { source: "/about-us", destination: "/about", permanent: true },
       { source: "/gallery", destination: "/projects", permanent: true },
       { source: "/services/mowing", destination: "/services/lawn-mowing", permanent: true },
+      { source: "/request-estimate", destination: "/request-quote", permanent: false },
       { source: "/privacy-policy", destination: "/privacy", permanent: true },
       { source: "/terms-and-conditions", destination: "/terms", permanent: true },
     ];
@@ -25,6 +26,16 @@ const nextConfig: NextConfig = {
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "X-Frame-Options", value: "SAMEORIGIN" },
+        ],
+      },
+      {
+        source: "/request-quote",
+        headers: [
+          {
+            key: "Content-Security-Policy",
+            value:
+              "frame-src 'self' https://clienthub.getjobber.com https://www.jobberonline.com; frame-ancestors 'self'",
+          },
         ],
       },
     ];

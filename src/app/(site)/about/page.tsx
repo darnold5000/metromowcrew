@@ -60,7 +60,7 @@ export default function AboutPage() {
           title={siteConfig.tagline}
           description={siteConfig.serviceArea.note}
         />
-        <ButtonLink href="/request-estimate" className="mt-8">
+        <ButtonLink href={siteConfig.quoteHref} className="mt-8">
           {siteConfig.estimateCta}
         </ButtonLink>
       </Section>

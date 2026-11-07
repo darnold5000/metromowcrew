@@ -38,13 +38,13 @@ export default function HomePage() {
             {siteConfig.description}
           </p>
           <div className="animate-fade-up-delay-2 mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-            <ButtonLink href="/request-estimate">{siteConfig.estimateCta}</ButtonLink>
+            <ButtonLink href={siteConfig.quoteHref}>{siteConfig.estimateCta}</ButtonLink>
             <ButtonLink
-              href="/services"
+              href={siteConfig.contactHref}
               variant="secondary"
               className="border-white/40 bg-white/20 text-white shadow-sm backdrop-blur-sm hover:bg-white/30"
             >
-              View Services
+              {siteConfig.contactCta}
             </ButtonLink>
             <ButtonLink
               href={siteConfig.phoneHref}
@@ -150,16 +150,16 @@ export default function HomePage() {
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="font-display text-3xl sm:text-4xl">{siteConfig.tagline}</h2>
           <p className="mt-4 text-base text-sand/85 sm:text-lg">
-            {siteConfig.estimateCta} for your property in {siteConfig.serviceArea.summary}.
+            {siteConfig.estimateCta} for lawn work, or {siteConfig.contactCta} with a question.
           </p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <ButtonLink href="/request-estimate">{siteConfig.estimateCta}</ButtonLink>
+            <ButtonLink href={siteConfig.quoteHref}>{siteConfig.estimateCta}</ButtonLink>
             <ButtonLink
-              href={siteConfig.phoneHref}
+              href={siteConfig.contactHref}
               variant="secondary"
               className="border-white/25 bg-transparent text-white hover:bg-white/10"
             >
-              {siteConfig.phoneDisplay}
+              {siteConfig.contactCta}
             </ButtonLink>
           </div>
         </div>
