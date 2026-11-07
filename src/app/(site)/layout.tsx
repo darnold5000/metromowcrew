@@ -10,7 +10,7 @@ export default function SiteLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="pb-24 lg:pb-0">
+    <div className="overflow-x-clip pb-24 lg:pb-0">
       <LocalBusinessJsonLd />
       <PromoBanner />
       <SiteHeader />

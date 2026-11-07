@@ -1,9 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 
 export function MobileCtaBar() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-surface/95 p-3 backdrop-blur lg:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-surface/95 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur lg:hidden">
       <div className="mx-auto flex max-w-lg gap-2">
         <Link
           href={siteConfig.contactHref}

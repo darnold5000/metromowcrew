@@ -20,23 +20,25 @@ export default function HomePage() {
   return (
     <>
       <section className="overflow-hidden bg-white">
-        <div className="relative h-[clamp(16rem,52vw,44rem)] w-full">
+        <div className="relative w-full aspect-[1024/367] bg-sand">
           <Image
             src={imageAssets.hero}
-            alt="Leading the Way in Lawn Care and Landscaping — manicured lawn and landscaped beds"
+            alt=""
             fill
             priority
-            className="object-cover object-[center_42%] brightness-[1.14] saturate-[1.12] contrast-[1.04]"
+            className="object-cover object-center brightness-[1.12] saturate-[1.1] contrast-[1.03]"
             sizes="100vw"
           />
         </div>
         <div className="border-b border-border/40 bg-white">
-          <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
-            <h1 className="sr-only">{siteConfig.heroTitle}</h1>
-            <p className="max-w-2xl text-base leading-relaxed text-evergreen sm:text-lg">
+          <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-10">
+            <h1 className="font-display text-2xl font-semibold leading-snug text-evergreen-deep sm:sr-only sm:text-3xl">
+              {siteConfig.heroTitle}
+            </h1>
+            <p className="mt-3 max-w-2xl text-base leading-relaxed text-evergreen sm:mt-0 sm:text-lg">
               {siteConfig.description}
             </p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <div className="mt-6 hidden flex-col gap-3 sm:flex sm:flex-row sm:flex-wrap sm:items-center">
               <ButtonLink href={siteConfig.quoteHref}>{siteConfig.estimateCta}</ButtonLink>
               <ButtonLink href={siteConfig.contactHref} variant="secondary">
                 {siteConfig.contactCta}
@@ -46,7 +48,7 @@ export default function HomePage() {
                 {siteConfig.phoneDisplay}
               </ButtonLink>
             </div>
-            <p className="mt-5 inline-flex items-center gap-2 text-sm text-muted">
+            <p className="mt-4 inline-flex items-center gap-2 text-sm text-muted sm:mt-5">
               <MapPin className="size-4 text-leaf" aria-hidden />
               Serving {siteConfig.serviceArea.cities.join(" • ")}
             </p>

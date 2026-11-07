@@ -13,7 +13,10 @@ export function BrandLogo({ className, variant = "default" }: BrandLogoProps) {
 
   return (
     <span
-      className={cn("inline-flex max-w-[16rem] items-center gap-2.5 sm:max-w-none", className)}
+      className={cn(
+        "inline-flex min-w-0 max-w-[calc(100vw-4.5rem)] items-center gap-2 sm:max-w-none sm:gap-2.5",
+        className,
+      )}
       aria-label={siteConfig.legalName}
     >
       <Image
@@ -21,13 +24,13 @@ export function BrandLogo({ className, variant = "default" }: BrandLogoProps) {
         alt=""
         width={56}
         height={56}
-        className="size-12 shrink-0 rounded-md object-contain sm:size-14"
+        className="size-10 shrink-0 rounded-md object-contain sm:size-14"
         priority
       />
       <span className="flex min-w-0 flex-col leading-tight">
         <span
           className={cn(
-            "font-display text-sm font-semibold tracking-tight sm:text-base",
+            "truncate font-display text-sm font-semibold tracking-tight sm:text-base",
             onDark ? "text-white" : "text-evergreen-deep",
           )}
         >
@@ -35,7 +38,7 @@ export function BrandLogo({ className, variant = "default" }: BrandLogoProps) {
         </span>
         <span
           className={cn(
-            "mt-0.5 text-[0.65rem] font-semibold tracking-[0.12em] uppercase",
+            "mt-0.5 hidden text-[0.65rem] font-semibold tracking-[0.12em] uppercase min-[400px]:block",
             onDark ? "text-sand/85" : "text-leaf",
           )}
         >
