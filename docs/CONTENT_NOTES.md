@@ -16,9 +16,14 @@ Cloned from `targetlawnpro` (landscape marketing + ops template). Public copy an
 
 Downloaded to `public/images/metromowcrew/` from Wix CDN (`static.wixstatic.com`). Replace with higher-res client assets when available.
 
-## Backend naming (legacy)
+## Backend naming (legacy product prefix)
 
-Supabase tables remain `weidner_*` from the template. Tenant slug is **`metromowcrew`**. Env var name is still `WEIDNER_TENANT_ID` until a shared rename lands in the module.
+Shared lawn-ops tables remain **`weidner_*`** (module prefix on Signal Works Supabase). Data is isolated by **`tenant_id`**.
+
+| Concept | Value |
+|---------|--------|
+| Tenant slug | `metromowcrew` |
+| Server env | `METROMOWCREW_TENANT_ID` (`WEIDNER_TENANT_ID` accepted as deprecated fallback) |
 
 ## Do not invent
 

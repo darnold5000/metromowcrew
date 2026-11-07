@@ -4,7 +4,7 @@ import {
   isSupabaseConfigured,
 } from "@/lib/supabase/server";
 import { WEIDNER_TABLES } from "@/lib/supabase/tables";
-import { getWeidnerTenantIdOrNull } from "@/lib/tenant/deployment";
+import { getMetroMowCrewTenantIdOrNull } from "@/lib/tenant/deployment";
 
 export type StaffRole = "owner" | "admin" | "staff" | "content_editor";
 
@@ -34,7 +34,7 @@ export async function resolveAccessState(): Promise<AccessState> {
 
   if (!user) return { status: "unauthenticated" };
 
-  const tenantId = getWeidnerTenantIdOrNull();
+  const tenantId = getMetroMowCrewTenantIdOrNull();
   if (!tenantId) {
     return { status: "disabled", reason: "tenant_not_configured" };
   }

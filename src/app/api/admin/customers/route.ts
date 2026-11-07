@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { resolveAccessState } from "@/lib/auth/access";
 import { createClient } from "@/lib/supabase/server";
 import { WEIDNER_TABLES } from "@/lib/supabase/tables";
-import { getWeidnerTenantId } from "@/lib/tenant/deployment";
+import { getMetroMowCrewTenantId } from "@/lib/tenant/deployment";
 
 export async function GET() {
   const access = await resolveAccessState();
@@ -10,7 +10,7 @@ export async function GET() {
     return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
   }
 
-  const tenantId = getWeidnerTenantId();
+  const tenantId = getMetroMowCrewTenantId();
   const supabase = await createClient();
   const { data, error } = await supabase
     .from(WEIDNER_TABLES.customers)

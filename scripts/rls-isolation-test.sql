@@ -1,5 +1,5 @@
 -- =============================================================================
--- Weidner Lawnscape — RLS isolation test (shared Signal Works Supabase)
+-- Metro Mow Crew — RLS isolation test (shared Signal Works Supabase, weidner_* lawn-ops)
 -- =============================================================================
 -- Run in SQL Editor AFTER migrations 001–005 and staff provisioning.
 -- Uses authenticated JWTs via set_config('request.jwt.claim.sub', …) pattern
@@ -7,9 +7,9 @@
 --
 -- Goal: prove
 --   1) Every weidner_* table has RLS enabled
---   2) Weidner staff sees only Weidner tenant rows
---   3) Another tenant's authenticated user sees zero Weidner rows
---   4) Anon cannot select/insert Weidner leads
+--   2) Metro staff sees only Metro tenant rows
+--   3) Another tenant's authenticated user sees zero Metro rows
+--   4) Anon cannot select/insert lawn-ops leads
 --   5) tenant_id cannot be mutated
 --
 -- Replace placeholders before running interactive sections.
@@ -57,25 +57,25 @@ do $$
 declare
   tid uuid;
 begin
-  select id into tid from public.tenants where slug = 'weidner-lawnscape';
+  select id into tid from public.tenants where slug = 'metromowcrew';
   if tid is null then
-    raise exception 'RLS isolation FAIL: tenant weidner-lawnscape missing';
+    raise exception 'RLS isolation FAIL: tenant metromowcrew missing';
   end if;
-  raise notice 'A3 PASS: weidner-lawnscape tenant_id=%', tid;
+  raise notice 'A3 PASS: metromowcrew tenant_id=%', tid;
 end $$;
 
 -- ---------------------------------------------------------------------------
 -- B. Cross-tenant isolation (manual / scripted with two auth users)
 -- ---------------------------------------------------------------------------
 -- Prerequisites:
---   :weidner_tenant_id  — select id from tenants where slug = 'weidner-lawnscape'
---   :other_tenant_id    — any other active tenant (e.g. dawg-youth-training)
---   :weidner_user_id    — auth user with weidner_staff_profiles row
---   :other_user_id      — auth user WITHOUT weidner_staff_profiles (e.g. DAWG staff only)
+--   :metromowcrew_tenant_id — select id from tenants where slug = 'metromowcrew'
+--   :other_tenant_id        — any other active tenant (e.g. dawg-youth-training)
+--   :metro_staff_user_id    — auth user with weidner_staff_profiles row for Metro tenant
+--   :other_user_id          — auth user WITHOUT Metro weidner_staff_profiles row
 --
 -- Preferred verification method (app-level, recommended):
---   1. Sign in as Weidner staff → GET /admin/leads shows only Weidner leads
---   2. Sign in as other-tenant staff on Weidner app → /access-disabled
+--   1. Sign in as Metro staff → GET /admin/leads shows only Metro rows
+--   2. Sign in as other-tenant staff on Metro app → /access-disabled
 --   3. With other-tenant JWT + anon key, PostgREST:
 --        GET /rest/v1/weidner_leads  → 0 rows (or permission denied)
 --   4. With anon key only (no JWT):
@@ -90,7 +90,7 @@ end $$;
 /*
 do $$
 declare
-  v_tenant uuid := '<WEIDNER_TENANT_ID>'::uuid;
+  v_tenant uuid := '<METROMOWCREW_TENANT_ID>'::uuid;
   v_lead uuid;
 begin
   insert into public.weidner_leads (

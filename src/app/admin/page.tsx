@@ -4,22 +4,22 @@ import {
   isSupabaseConfigured,
 } from "@/lib/supabase/server";
 import { WEIDNER_TABLES } from "@/lib/supabase/tables";
-import { getWeidnerTenantIdOrNull } from "@/lib/tenant/deployment";
+import { getMetroMowCrewTenantIdOrNull } from "@/lib/tenant/deployment";
 
 export default async function AdminDashboardPage() {
-  if (!isSupabaseConfigured() || !getWeidnerTenantIdOrNull()) {
+  if (!isSupabaseConfigured() || !getMetroMowCrewTenantIdOrNull()) {
     return (
       <div className="rounded-xl border border-border bg-surface p-6">
         <h1 className="font-display text-2xl text-evergreen-deep">Dashboard</h1>
         <p className="mt-3 text-muted">
-          Connect Supabase and set <code>WEIDNER_TENANT_ID</code> to load live metrics.
+          Connect Supabase and set <code>METROMOWCREW_TENANT_ID</code> to load live metrics.
           Apply migrations in <code>supabase-signalworks/migrations</code> first.
         </p>
       </div>
     );
   }
 
-  const tenantId = getWeidnerTenantIdOrNull()!;
+  const tenantId = getMetroMowCrewTenantIdOrNull()!;
   const supabase = await createClient();
   const now = new Date();
   const weekAhead = new Date(now);

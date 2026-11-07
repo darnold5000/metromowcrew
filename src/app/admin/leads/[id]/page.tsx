@@ -5,7 +5,7 @@ import {
   isSupabaseConfigured,
 } from "@/lib/supabase/server";
 import { WEIDNER_TABLES } from "@/lib/supabase/tables";
-import { getWeidnerTenantIdOrNull } from "@/lib/tenant/deployment";
+import { getMetroMowCrewTenantIdOrNull } from "@/lib/tenant/deployment";
 import { LeadActions } from "@/components/admin/lead-actions";
 import { LEAD_STATUS_LABELS, type LeadStatus } from "@/lib/leads/schema";
 import { getSignedLeadPhotos } from "@/lib/admin/signed-photos";
@@ -14,9 +14,9 @@ type Props = { params: Promise<{ id: string }> };
 
 export default async function AdminLeadDetailPage({ params }: Props) {
   const { id } = await params;
-  if (!isSupabaseConfigured() || !getWeidnerTenantIdOrNull()) notFound();
+  if (!isSupabaseConfigured() || !getMetroMowCrewTenantIdOrNull()) notFound();
 
-  const tenantId = getWeidnerTenantIdOrNull()!;
+  const tenantId = getMetroMowCrewTenantIdOrNull()!;
   const supabase = await createClient();
   const { data: lead } = await supabase
     .from(WEIDNER_TABLES.leads)

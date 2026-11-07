@@ -8,7 +8,7 @@ import { normalizePhoneDigits } from "@/lib/forms/validation";
 import { rateLimit } from "@/lib/rate-limit";
 import { createServiceClient, isSupabaseConfigured } from "@/lib/supabase/server";
 import { WEIDNER_TABLES } from "@/lib/supabase/tables";
-import { getWeidnerTenantId } from "@/lib/tenant/deployment";
+import { getMetroMowCrewTenantId } from "@/lib/tenant/deployment";
 import { readJsonBody } from "@/lib/http/read-json-body";
 import { siteConfig } from "@/config/site";
 
@@ -70,7 +70,7 @@ export async function POST(request: Request) {
       });
     }
 
-    const tenantId = getWeidnerTenantId();
+    const tenantId = getMetroMowCrewTenantId();
     const supabase = createServiceClient();
     const outside =
       data.outsideServiceArea ??

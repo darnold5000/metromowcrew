@@ -4,7 +4,7 @@ import {
   isSupabaseConfigured,
 } from "@/lib/supabase/server";
 import { WEIDNER_TABLES } from "@/lib/supabase/tables";
-import { getWeidnerTenantIdOrNull } from "@/lib/tenant/deployment";
+import { getMetroMowCrewTenantIdOrNull } from "@/lib/tenant/deployment";
 import {
   ESTIMATE_STATUS_LABELS,
   type EstimateStatus,
@@ -12,7 +12,7 @@ import {
 } from "@/lib/ops/schema";
 
 export default async function AdminEstimatesPage() {
-  if (!isSupabaseConfigured() || !getWeidnerTenantIdOrNull()) {
+  if (!isSupabaseConfigured() || !getMetroMowCrewTenantIdOrNull()) {
     return (
       <div>
         <h1 className="font-display text-3xl">Estimates</h1>
@@ -21,7 +21,7 @@ export default async function AdminEstimatesPage() {
     );
   }
 
-  const tenantId = getWeidnerTenantIdOrNull()!;
+  const tenantId = getMetroMowCrewTenantIdOrNull()!;
   const supabase = await createClient();
   const { data: estimates, error } = await supabase
     .from(WEIDNER_TABLES.estimates)

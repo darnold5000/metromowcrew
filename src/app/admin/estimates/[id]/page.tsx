@@ -5,7 +5,7 @@ import {
   isSupabaseConfigured,
 } from "@/lib/supabase/server";
 import { WEIDNER_TABLES } from "@/lib/supabase/tables";
-import { getWeidnerTenantIdOrNull } from "@/lib/tenant/deployment";
+import { getMetroMowCrewTenantIdOrNull } from "@/lib/tenant/deployment";
 import { EstimateEditor } from "@/components/admin/estimate-editor";
 import { ConvertEstimateToJob } from "@/components/admin/convert-estimate-to-job";
 import {
@@ -19,9 +19,9 @@ type Props = { params: Promise<{ id: string }> };
 
 export default async function AdminEstimateDetailPage({ params }: Props) {
   const { id } = await params;
-  if (!isSupabaseConfigured() || !getWeidnerTenantIdOrNull()) notFound();
+  if (!isSupabaseConfigured() || !getMetroMowCrewTenantIdOrNull()) notFound();
 
-  const tenantId = getWeidnerTenantIdOrNull()!;
+  const tenantId = getMetroMowCrewTenantIdOrNull()!;
   const supabase = await createClient();
   const { data: estimate } = await supabase
     .from(WEIDNER_TABLES.estimates)

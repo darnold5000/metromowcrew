@@ -3,7 +3,7 @@ import { resolveAccessState } from "@/lib/auth/access";
 import { updateEstimateSchema } from "@/lib/ops/schema";
 import { createClient } from "@/lib/supabase/server";
 import { WEIDNER_TABLES } from "@/lib/supabase/tables";
-import { getWeidnerTenantId } from "@/lib/tenant/deployment";
+import { getMetroMowCrewTenantId } from "@/lib/tenant/deployment";
 import { readJsonBody } from "@/lib/http/read-json-body";
 
 type Params = { params: Promise<{ id: string }> };
@@ -15,7 +15,7 @@ export async function GET(_request: Request, { params }: Params) {
   }
 
   const { id } = await params;
-  const tenantId = getWeidnerTenantId();
+  const tenantId = getMetroMowCrewTenantId();
   const supabase = await createClient();
 
   const { data: estimate, error } = await supabase
@@ -50,7 +50,7 @@ export async function PATCH(request: Request, { params }: Params) {
     return NextResponse.json({ ok: false, error: "Invalid update" }, { status: 400 });
   }
 
-  const tenantId = getWeidnerTenantId();
+  const tenantId = getMetroMowCrewTenantId();
   const supabase = await createClient();
   const data = parsed.data;
   const updates: Record<string, unknown> = {

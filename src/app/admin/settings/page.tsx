@@ -1,5 +1,5 @@
-import { siteConfig } from "@/config/site";
-import { allowIndexing } from "@/config/site";
+import { siteConfig, siteAllowIndexing } from "@/config/site";
+import { METROMOWCREW_TENANT_SLUG } from "@/lib/tenant/deployment";
 
 export default function AdminSettingsPage() {
   return (
@@ -25,14 +25,14 @@ export default function AdminSettingsPage() {
         <div>
           <dt className="font-medium text-evergreen">Search indexing</dt>
           <dd className="text-muted">
-            {allowIndexing()
-              ? "Enabled (NEXT_PUBLIC_ALLOW_INDEXING=true)"
-              : "Disabled — staging/demo default (noindex)"}
+            {siteAllowIndexing
+              ? "Enabled — update siteAllowIndexing in src/config/site.ts for launch"
+              : "Disabled — hardcoded noindex until launch"}
           </dd>
         </div>
         <div>
           <dt className="font-medium text-evergreen">Tenant slug</dt>
-          <dd className="text-muted">weidner-lawnscape</dd>
+          <dd className="text-muted">{METROMOWCREW_TENANT_SLUG}</dd>
         </div>
       </dl>
       <p className="mt-4 text-sm text-muted">

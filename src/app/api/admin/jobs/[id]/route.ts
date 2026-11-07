@@ -3,7 +3,7 @@ import { resolveAccessState } from "@/lib/auth/access";
 import { updateJobSchema } from "@/lib/ops/schema";
 import { createClient } from "@/lib/supabase/server";
 import { WEIDNER_TABLES } from "@/lib/supabase/tables";
-import { getWeidnerTenantId } from "@/lib/tenant/deployment";
+import { getMetroMowCrewTenantId } from "@/lib/tenant/deployment";
 import { readJsonBody } from "@/lib/http/read-json-body";
 
 type Params = { params: Promise<{ id: string }> };
@@ -21,7 +21,7 @@ export async function PATCH(request: Request, { params }: Params) {
   }
 
   const data = parsed.data;
-  const tenantId = getWeidnerTenantId();
+  const tenantId = getMetroMowCrewTenantId();
   const supabase = await createClient();
 
   const updates: Record<string, unknown> = {

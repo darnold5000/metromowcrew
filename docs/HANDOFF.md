@@ -1,4 +1,6 @@
-# Weidner Lawnscape — Handoff
+# Metro Mow Crew — Handoff
+
+Fork of the lawn-ops template (`targetlawnpro`). Ops tables use the shared `weidner_*` prefix with tenant slug **`metromowcrew`**.
 
 ## What was reused
 
@@ -10,7 +12,7 @@
 | `signalworks-modules/media-storage` | Tenant-prefixed upload paths |
 | DAWG / MA5 | Supabase SSR clients, service role, staff profile access gating |
 | `lotus-pet-spa` / `dbat` | Marketing site structure, noindex, footer credit |
-| Live site `weidnerlawnscape.com` | Copy, contact, services, reviews, gallery images |
+| Legacy site `metromowcrew.com` | Copy, contact, services, reviews, gallery images |
 
 ## What was built
 
@@ -25,7 +27,7 @@
 - **Recurring services** create/list (no bulk job generation)
 - **Customers** list/detail with properties, estimates, jobs, recurring
 - Lead photo signed URLs in admin
-- Configurable indexing via `NEXT_PUBLIC_ALLOW_INDEXING`
+- Indexing gated by `siteAllowIndexing` in `src/config/site.ts` (default off)
 - Seasonal promo banner hook (`src/data/promotions.ts` — empty until owner provides copy)
 
 ## Routes
@@ -59,12 +61,12 @@
 1. Read `docs/MIGRATION-SAFETY.md` and `docs/RLS-ISOLATION.md`
 2. Apply SQL migrations 001–005 on Signal Works Supabase (004b if bucket insert fails)
 3. Run `scripts/rls-isolation-test.sql` (A structural + B API JWT isolation)
-4. Set `WEIDNER_TENANT_ID`
+4. Set `METROMOWCREW_TENANT_ID`
 5. Create Auth user + `weidner_staff_profiles` owner row (`scripts/grant-staff-access.sql`)
 6. Configure Resend domain/from address
 7. Follow `docs/LAUNCH-CHECKLIST.md` for end-to-end production flow
 8. Deploy to Vercel; keep noindex until launch
-9. Set `NEXT_PUBLIC_ALLOW_INDEXING=true` at launch
+9. Set `siteAllowIndexing = true` at launch (and redeploy)
 10. Redeploy after env changes
 
 ## Testing completed (local)

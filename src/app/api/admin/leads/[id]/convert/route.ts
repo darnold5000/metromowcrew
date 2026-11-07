@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { resolveAccessState } from "@/lib/auth/access";
 import { createClient } from "@/lib/supabase/server";
 import { WEIDNER_TABLES } from "@/lib/supabase/tables";
-import { getWeidnerTenantId } from "@/lib/tenant/deployment";
+import { getMetroMowCrewTenantId } from "@/lib/tenant/deployment";
 
 type Params = { params: Promise<{ id: string }> };
 
@@ -14,7 +14,7 @@ export async function POST(_request: Request, { params }: Params) {
   }
 
   const { id } = await params;
-  const tenantId = getWeidnerTenantId();
+  const tenantId = getMetroMowCrewTenantId();
   const supabase = await createClient();
 
   const { data: lead, error: leadError } = await supabase

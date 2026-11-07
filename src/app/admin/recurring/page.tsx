@@ -4,12 +4,12 @@ import {
   isSupabaseConfigured,
 } from "@/lib/supabase/server";
 import { WEIDNER_TABLES } from "@/lib/supabase/tables";
-import { getWeidnerTenantIdOrNull } from "@/lib/tenant/deployment";
+import { getMetroMowCrewTenantIdOrNull } from "@/lib/tenant/deployment";
 import { RecurringForm } from "@/components/admin/recurring-form";
 import { centsToDollars } from "@/lib/ops/schema";
 
 export default async function AdminRecurringPage() {
-  if (!isSupabaseConfigured() || !getWeidnerTenantIdOrNull()) {
+  if (!isSupabaseConfigured() || !getMetroMowCrewTenantIdOrNull()) {
     return (
       <div>
         <h1 className="font-display text-3xl">Recurring services</h1>
@@ -18,7 +18,7 @@ export default async function AdminRecurringPage() {
     );
   }
 
-  const tenantId = getWeidnerTenantIdOrNull()!;
+  const tenantId = getMetroMowCrewTenantIdOrNull()!;
   const supabase = await createClient();
   const [{ data: recurring, error }, { data: customers }] = await Promise.all([
     supabase

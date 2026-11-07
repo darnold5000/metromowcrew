@@ -4,10 +4,10 @@ import {
   isSupabaseConfigured,
 } from "@/lib/supabase/server";
 import { WEIDNER_TABLES } from "@/lib/supabase/tables";
-import { getWeidnerTenantIdOrNull } from "@/lib/tenant/deployment";
+import { getMetroMowCrewTenantIdOrNull } from "@/lib/tenant/deployment";
 
 export default async function AdminCustomersPage() {
-  if (!isSupabaseConfigured() || !getWeidnerTenantIdOrNull()) {
+  if (!isSupabaseConfigured() || !getMetroMowCrewTenantIdOrNull()) {
     return (
       <div>
         <h1 className="font-display text-3xl">Customers</h1>
@@ -16,7 +16,7 @@ export default async function AdminCustomersPage() {
     );
   }
 
-  const tenantId = getWeidnerTenantIdOrNull()!;
+  const tenantId = getMetroMowCrewTenantIdOrNull()!;
   const supabase = await createClient();
   const { data: customers, error } = await supabase
     .from(WEIDNER_TABLES.customers)

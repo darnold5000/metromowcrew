@@ -1,45 +1,40 @@
-# RLS isolation — Weidner Lawnscape
+# RLS isolation — Metro Mow Crew (shared `weidner_*` lawn-ops schema)
 
 Highest-risk area on the shared production database: cross-tenant data leakage.
 
-## Threat model
+## Access matrix
 
-| Actor | Must see Weidner ops data? |
-|-------|----------------------------|
-| Anon (public site) | No — forms use service-role server routes only |
-| Authenticated user with no `weidner_staff_profiles` row | No |
-| Weidner staff | Only rows where `tenant_id` = Weidner tenant |
-| Staff of another tenant (DAWG/MA5/etc.) | No Weidner rows |
-| SQL Editor / service role | Bypass RLS (trusted operators only) |
+| Actor | Must see Metro Mow Crew ops data? |
+|-------|-----------------------------------|
+| Anonymous | No |
+| Authenticated user with no `weidner_staff_profiles` row for this tenant | No |
+| Metro Mow Crew staff | Only rows where `tenant_id` = Metro tenant |
+| Staff of another tenant (DAWG/MA5/Lopez/etc.) | No Metro rows |
 
-## Automated / documented tests
+## Verification layers
 
-1. **Structural SQL** — `scripts/rls-isolation-test.sql` sections A1–A3  
-   Asserts RLS on all `weidner_*` tables, private bucket, tenant row exists.
+1. **Structural** — `scripts/rls-isolation-test.sql`  
+   Asserts RLS on all `weidner_*` tables, private bucket, `metromowcrew` tenant row exists.
 
-2. **API isolation (required before launch)** — section B  
-   Prove with **PostgREST + user JWTs**, not the SQL editor:
-   - Weidner staff JWT → can read own leads
-   - Other-tenant JWT → `[]` on `weidner_leads`
-   - Anon key → cannot select/insert leads
+2. **API JWT** — section B in the same script  
+   - Metro staff JWT → can read own leads  
+   - Other-tenant JWT → `[]` on `weidner_leads` for Metro tenant
 
-3. **App unit tests** — `npm test`  
-   - `WEIDNER_TENANT_ID` only from env  
+3. **Application**  
+   - `METROMOWCREW_TENANT_ID` only from env  
    - Client payloads with `tenant_id` are rejected
 
-## App enforcement (belt and suspenders)
+## Data flow
 
 ```
 Form / API body  →  never trusted for tenant_id
-Server           →  getWeidnerTenantId() from env
+Server           →  getMetroMowCrewTenantId() from env
 DB RLS           →  weidner_is_staff(tenant_id)
 Trigger          →  tenant_id immutable on UPDATE
 ```
 
-## Sign-off
+## Pre-launch
 
-- [ ] Migrations 001–005 applied
-- [ ] `scripts/rls-isolation-test.sql` A1–A3 PASS
+- [ ] Section A (A1–A3) PASS for `metromowcrew`
 - [ ] Cross-tenant API test (B2/B3) PASS
-- [ ] Estimate form still works end-to-end
-- [ ] Results noted in launch checklist
+- [ ] Staff without profile gets `/access-disabled`

@@ -11,7 +11,7 @@ Built on the Signal Works stack: Next.js App Router, Tailwind, shared Supabase A
 ```bash
 npm install
 cp .env.example .env.local
-# fill Supabase + Resend + WEIDNER_TENANT_ID (Metro Mow Crew tenant)
+# fill Supabase + Resend + METROMOWCREW_TENANT_ID
 npm run dev
 ```
 
@@ -26,7 +26,7 @@ See `.env.example`.
 | `NEXT_PUBLIC_SITE_URL` | Canonical site URL |
 | `NEXT_PUBLIC_SUPABASE_URL` / `ANON_KEY` | Shared Signal Works Supabase |
 | `SUPABASE_SERVICE_ROLE_KEY` | Server-only lead inserts & uploads |
-| `WEIDNER_TENANT_ID` | `select id from tenants where slug = 'metromowcrew'` |
+| `METROMOWCREW_TENANT_ID` | `select id from tenants where slug = 'metromowcrew'` (legacy `WEIDNER_TENANT_ID` still works) |
 | `RESEND_API_KEY` / `EMAIL_FROM` / `ADMIN_NOTIFY_EMAIL` | Transactional email |
 
 Search indexing is **hardcoded off** (`siteAllowIndexing` in `src/config/site.ts`) until you explicitly opt in for launch.
@@ -35,17 +35,23 @@ Without Supabase, estimate/contact forms run in **demo mode** (log + success UI,
 
 ## Database migrations
 
-Apply in order on the shared Signal Works Supabase project:
+**Check first** (tells you if 002–005 are already on shared Signal Works from another lawn client):
 
-`supabase-signalworks/migrations/`
+```bash
+npm run db:migrate:status
+```
 
-1. `001_weidner_tenant_registration.sql` (registers `metromowcrew` tenant)
-2. `002_weidner_schema.sql`
-3. `003_weidner_rls.sql`
-4. `004_weidner_storage.sql` (or Dashboard bucket + `004b_…`)
-5. `005_weidner_rls_assertions.sql`
+**Apply:** run core migrations 001–005 via npm (requires `DATABASE_URL` in `.env.local`):
 
-Then set `WEIDNER_TENANT_ID` and provision staff via `scripts/grant-staff-access.sql`.
+```bash
+# Shared production — add guard when prompted by the script
+METROMOWCREW_MIGRATE_CONFIRM=gezdzzqnylloaxcmuzvm npm run db:migrate
+npm run db:staff
+```
+
+The migrate script prints `METROMOWCREW_TENANT_ID` after 001.
+
+Manual SQL lives in `supabase-signalworks/migrations/` (same order). If `004` bucket insert fails, create private bucket `weidner-lead-photos` in the Dashboard, then run `004b_weidner_storage_policies_only.sql` instead of re-running `004`.
 
 ## Content
 

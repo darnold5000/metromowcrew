@@ -5,7 +5,7 @@ import {
   isSupabaseConfigured,
 } from "@/lib/supabase/server";
 import { LEAD_PHOTO_BUCKET, WEIDNER_TABLES } from "@/lib/supabase/tables";
-import { getWeidnerTenantId } from "@/lib/tenant/deployment";
+import { getMetroMowCrewTenantId } from "@/lib/tenant/deployment";
 
 type Params = { params: Promise<{ id: string }> };
 
@@ -21,7 +21,7 @@ export async function GET(_request: Request, { params }: Params) {
   }
 
   const { id } = await params;
-  const tenantId = getWeidnerTenantId();
+  const tenantId = getMetroMowCrewTenantId();
   const supabase = createServiceClient();
 
   const { data: photos, error } = await supabase

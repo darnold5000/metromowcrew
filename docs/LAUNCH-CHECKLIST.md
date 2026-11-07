@@ -1,30 +1,28 @@
-# Lopez Property & Services, LLC
+# Metro Mow Crew — launch checklist
 
 ## Before applying migrations
 
-- [ ] Complete hobby platform prep: `signalworks-platform/hobby/docs/HOBBY-DATABASE-PREPARATION.md` (audit SQL + gate checklist)
-- [x] Review `docs/MIGRATION-SAFETY.md`
-- [x] Confirm `weidner_` prefix registered in shared-supabase products map
-- [x] Confirm RLS isolation plan in `docs/RLS-ISOLATION.md`
+- [ ] Review `docs/MIGRATION-SAFETY.md`
+- [ ] Confirm `weidner_` lawn-ops prefix is registered in shared-supabase products map
+- [ ] Confirm RLS isolation plan in `docs/RLS-ISOLATION.md`
 
 ## Apply (shared Signal Works Supabase)
 
-1. [ ] `001_weidner_tenant_registration.sql`
-2. [ ] `002_weidner_schema.sql`
-3. [ ] `003_weidner_rls.sql`
+1. [ ] `001_weidner_tenant_registration.sql` (registers `metromowcrew` tenant)
+2. [ ] `002_weidner_schema.sql` — skip if already applied on shared DB
+3. [ ] `003_weidner_rls.sql` — skip if already applied
 4. [ ] `004_weidner_storage.sql` (or Dashboard bucket + `004b`)
-5. [ ] `005_weidner_rls_assertions.sql`
-6. [ ] `007_lopez_tenant_display_name.sql` (public brand name; slug unchanged)
-7. [ ] Run `scripts/rls-isolation-test.sql` sections A1–A3
-8. [ ] API cross-tenant JWT test (section B) — **do not rely on SQL Editor alone**
+5. [ ] `005_weidner_rls_assertions.sql` — skip if already applied
+6. [ ] Run `scripts/rls-isolation-test.sql` sections A1–A3 for **this** tenant
+7. [ ] API cross-tenant JWT test (section B) — **do not rely on SQL Editor alone**
 
 ## Configure
 
-- [ ] `WEIDNER_TENANT_ID` from `select id from tenants where slug = 'weidner-lawnscape'`
+- [ ] `METROMOWCREW_TENANT_ID` from `select id from tenants where slug = 'metromowcrew'`
 - [ ] `NEXT_PUBLIC_SUPABASE_URL` / `ANON_KEY` / `SUPABASE_SERVICE_ROLE_KEY`
 - [ ] Resend: `RESEND_API_KEY`, `EMAIL_FROM`, `ADMIN_NOTIFY_EMAIL`
 - [ ] `NEXT_PUBLIC_SITE_URL`
-- [ ] Keep `NEXT_PUBLIC_ALLOW_INDEXING=false` until final approval
+- [ ] Search indexing stays off until launch (`siteAllowIndexing` in `src/config/site.ts`)
 - [ ] Provision staff: `scripts/grant-staff-access.sql`
 
 ## Production flow test
@@ -38,13 +36,13 @@
 - [ ] Create estimate
 - [ ] Convert estimate → job
 - [ ] Create recurring service
-- [ ] RLS: normal authenticated non-Weidner user cannot see Weidner rows
+- [ ] RLS: user without `weidner_staff_profiles` for this tenant cannot see Metro rows
 
 ## Soft launch
 
 - [ ] Owner review of copied content/images
 - [ ] Connect final domain
-- [ ] `NEXT_PUBLIC_ALLOW_INDEXING=true` only after approval + redeploy
+- [ ] Flip `siteAllowIndexing` to `true` only after approval + redeploy
 
 ## Deferred
 

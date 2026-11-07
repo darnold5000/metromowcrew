@@ -4,7 +4,7 @@ import {
   isSupabaseConfigured,
 } from "@/lib/supabase/server";
 import { WEIDNER_TABLES } from "@/lib/supabase/tables";
-import { getWeidnerTenantIdOrNull } from "@/lib/tenant/deployment";
+import { getMetroMowCrewTenantIdOrNull } from "@/lib/tenant/deployment";
 import { LEAD_STATUS_LABELS, type LeadStatus } from "@/lib/leads/schema";
 
 export default async function AdminLeadsPage({
@@ -14,7 +14,7 @@ export default async function AdminLeadsPage({
 }) {
   const { status } = await searchParams;
 
-  if (!isSupabaseConfigured() || !getWeidnerTenantIdOrNull()) {
+  if (!isSupabaseConfigured() || !getMetroMowCrewTenantIdOrNull()) {
     return (
       <div>
         <h1 className="font-display text-3xl">Leads</h1>
@@ -23,7 +23,7 @@ export default async function AdminLeadsPage({
     );
   }
 
-  const tenantId = getWeidnerTenantIdOrNull()!;
+  const tenantId = getMetroMowCrewTenantIdOrNull()!;
   const supabase = await createClient();
   let query = supabase
     .from(WEIDNER_TABLES.leads)

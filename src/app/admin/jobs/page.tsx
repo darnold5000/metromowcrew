@@ -4,11 +4,11 @@ import {
   isSupabaseConfigured,
 } from "@/lib/supabase/server";
 import { WEIDNER_TABLES } from "@/lib/supabase/tables";
-import { getWeidnerTenantIdOrNull } from "@/lib/tenant/deployment";
+import { getMetroMowCrewTenantIdOrNull } from "@/lib/tenant/deployment";
 import { JOB_STATUS_LABELS, type JobStatus } from "@/lib/ops/schema";
 
 export default async function AdminJobsPage() {
-  if (!isSupabaseConfigured() || !getWeidnerTenantIdOrNull()) {
+  if (!isSupabaseConfigured() || !getMetroMowCrewTenantIdOrNull()) {
     return (
       <div>
         <h1 className="font-display text-3xl">Jobs</h1>
@@ -17,7 +17,7 @@ export default async function AdminJobsPage() {
     );
   }
 
-  const tenantId = getWeidnerTenantIdOrNull()!;
+  const tenantId = getMetroMowCrewTenantIdOrNull()!;
   const supabase = await createClient();
   const { data: jobs, error } = await supabase
     .from(WEIDNER_TABLES.jobs)

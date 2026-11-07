@@ -3,7 +3,7 @@ import { z } from "zod";
 import { resolveAccessState } from "@/lib/auth/access";
 import { createClient } from "@/lib/supabase/server";
 import { WEIDNER_TABLES } from "@/lib/supabase/tables";
-import { getWeidnerTenantId } from "@/lib/tenant/deployment";
+import { getMetroMowCrewTenantId } from "@/lib/tenant/deployment";
 import { readJsonBody } from "@/lib/http/read-json-body";
 
 const noteSchema = z.object({
@@ -24,7 +24,7 @@ export async function POST(request: Request, { params }: Params) {
     return NextResponse.json({ ok: false, error: "Note is required" }, { status: 400 });
   }
 
-  const tenantId = getWeidnerTenantId();
+  const tenantId = getMetroMowCrewTenantId();
   const supabase = await createClient();
   const { error } = await supabase.from(WEIDNER_TABLES.leadNotes).insert({
     tenant_id: tenantId,

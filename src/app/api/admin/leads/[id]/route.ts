@@ -4,7 +4,7 @@ import { resolveAccessState } from "@/lib/auth/access";
 import { LEAD_STATUSES } from "@/lib/leads/schema";
 import { createClient } from "@/lib/supabase/server";
 import { WEIDNER_TABLES } from "@/lib/supabase/tables";
-import { getWeidnerTenantId } from "@/lib/tenant/deployment";
+import { getMetroMowCrewTenantId } from "@/lib/tenant/deployment";
 import { readJsonBody } from "@/lib/http/read-json-body";
 
 const patchSchema = z.object({
@@ -26,7 +26,7 @@ export async function PATCH(request: Request, { params }: Params) {
     return NextResponse.json({ ok: false, error: "Invalid update" }, { status: 400 });
   }
 
-  const tenantId = getWeidnerTenantId();
+  const tenantId = getMetroMowCrewTenantId();
   const supabase = await createClient();
   const updates: Record<string, unknown> = { updated_at: new Date().toISOString() };
   if (parsed.data.status) updates.status = parsed.data.status;
