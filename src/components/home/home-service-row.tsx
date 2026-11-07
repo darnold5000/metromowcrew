@@ -22,23 +22,18 @@ export function HomeServiceRow() {
                 href={`/services/${service.slug}`}
                 className="group flex flex-col items-center text-center"
               >
-                <div className="relative aspect-square w-full max-w-[11rem] overflow-hidden rounded-2xl bg-sand shadow-md ring-1 ring-border transition group-hover:-translate-y-0.5 group-hover:shadow-lg sm:max-w-none">
+                <div className="relative aspect-[4/5] w-full max-w-[11rem] overflow-hidden rounded-2xl bg-sand shadow-md ring-1 ring-border transition group-hover:-translate-y-0.5 group-hover:shadow-lg sm:max-w-none">
                   <Image
                     src={service.image}
                     alt={service.imageAlt}
                     fill
-                    className="object-cover transition duration-300 group-hover:scale-[1.03]"
+                    className="object-cover object-center transition duration-300 group-hover:scale-[1.03]"
                     sizes="(max-width: 768px) 40vw, 20vw"
                   />
                 </div>
-                <p className="mt-3 font-display text-base font-semibold text-leaf sm:text-lg">
+                <p className="mt-3 font-display text-base font-semibold text-evergreen-deep group-hover:text-leaf sm:text-lg">
                   {service.name}
                 </p>
-                {service.homeCta ? (
-                  <span className="mt-2 inline-block min-w-[4.5rem] rounded-full bg-brand-gold px-4 py-1.5 text-xs font-bold tracking-wide text-evergreen-deep uppercase transition group-hover:bg-brand-gold-hover">
-                    {service.homeCta}
-                  </span>
-                ) : null}
               </Link>
             </li>
           ))}

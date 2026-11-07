@@ -1,9 +1,9 @@
 /** Brand, marketing, and project images (Wix scrape + client-supplied). */
 export const imageAssets = {
-  hero: "/images/metromowcrew/hero-landscape.png",
+  hero: "/images/metromowcrew/hero.png",
   shareOg: "/images/metromowcrew/hero-landscape.png",
   about: "/images/metromowcrew/equipment-mower.png",
-  whyChoose: "/images/metromowcrew/why-choose-equipment.png",
+  whyChoose: "/images/metromowcrew/why-choose-equipment.jpg",
   logo: "/images/metromowcrew/logo.png",
   logoIcon: "/images/metromowcrew/logo.png",
   projects: {

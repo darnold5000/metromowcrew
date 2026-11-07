@@ -23,6 +23,7 @@ export default function RequestQuotePage() {
           description={jobberQuoteCopy.explanation}
         />
         <FormChoice active="quote" />
+        <p className="mt-6 max-w-2xl text-sm text-muted">{jobberQuoteCopy.addressNote}</p>
       </Section>
       <Section className="pt-8 pb-28 lg:pb-20">
         <div className="mx-auto max-w-3xl overflow-hidden rounded-2xl border border-border bg-surface p-4 shadow-sm sm:p-8">

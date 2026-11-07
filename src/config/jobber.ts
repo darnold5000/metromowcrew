@@ -58,6 +58,8 @@ export const jobberQuoteCopy = {
   eyebrow: "Free quote",
   headline: "Get Your Free Lawn Care Quote",
   explanation:
-    "Use this form for lawn care requests. Submissions go to our Jobber account so we can follow up with a quote. For general questions, use Contact Us instead — do not send the same request twice.",
+    "Use this form for lawn care requests. Submissions go to our Jobber account so we can follow up with a quote. Jobber usually asks for a property address so we know where to price the job — you can adjust required fields in Jobber settings. For general questions, use Contact Us instead.",
+  addressNote:
+    "A property address is normally required to build an accurate quote and schedule a visit.",
   cta: "Get a Free Quote",
 } as const;

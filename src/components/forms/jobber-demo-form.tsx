@@ -36,7 +36,10 @@ export function JobberDemoForm() {
           <input className={inputClass} name="email" type="email" autoComplete="email" />
         </Field>
       </div>
-      <Field label="Property address">
+      <Field
+        label="Property address"
+        hint="Usually required in live Jobber forms so we can price the visit."
+      >
         <input
           className={inputClass}
           name="address"
@@ -86,14 +89,17 @@ const inputClass =
 
 function Field({
   label,
+  hint,
   children,
 }: {
   label: string;
+  hint?: string;
   children: React.ReactNode;
 }) {
   return (
     <label className="block text-sm font-medium text-evergreen">
       {label}
+      {hint ? <span className="ml-1 font-normal text-muted">({hint})</span> : null}
       <span className="mt-1.5 block font-normal">{children}</span>
     </label>
   );
