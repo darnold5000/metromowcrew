@@ -20,17 +20,17 @@ export default function HomePage() {
   return (
     <>
       <section className="overflow-hidden bg-white">
-        <div className="relative aspect-[1024/367] w-full max-h-[min(48vh,520px)] min-h-[12.5rem] sm:min-h-[16rem]">
+        <div className="relative h-[clamp(16rem,52vw,44rem)] w-full">
           <Image
             src={imageAssets.hero}
             alt="Leading the Way in Lawn Care and Landscaping — manicured lawn and landscaped beds"
             fill
             priority
-            className="object-cover object-center brightness-105 saturate-[1.05]"
+            className="object-cover object-[center_42%] brightness-[1.14] saturate-[1.12] contrast-[1.04]"
             sizes="100vw"
           />
         </div>
-        <div className="border-b border-border/50 bg-gradient-to-b from-white via-white to-sand/50">
+        <div className="border-b border-border/40 bg-white">
           <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
             <h1 className="sr-only">{siteConfig.heroTitle}</h1>
             <p className="max-w-2xl text-base leading-relaxed text-evergreen sm:text-lg">
