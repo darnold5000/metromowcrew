@@ -14,6 +14,8 @@
   --sand: #eef5ef;
   --accent: #2f9e4a;
   --accent-hover: #247a39;
+  --brand-gold: #f5c518;
+  --brand-gold-hover: #e0b310;
   --focus: #1e4d8c;
 }
 
@@ -31,6 +33,8 @@
   --color-sand: var(--sand);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
+  --color-brand-gold: var(--brand-gold);
+  --color-brand-gold-hover: var(--brand-gold-hover);
   --font-sans: var(--font-body);
   --font-display: var(--font-display);
 }

@@ -14,7 +14,16 @@ export const siteConfig = {
   legalName: "Metro Mow Crew",
   positioning: "Landscaping & Lawn Care",
   tagline: "Say Hello To Metro Mow",
-  heroTitle: "Top-notch landscaping and lawn care",
+  heroTitle: "Leading the Way in Lawn Care and Landscaping",
+  whyChoose: {
+    title: "Why Choose Metro Mow Crew?",
+    points: [
+      "Locally owned and operated",
+      "Courteous and professional service",
+      "Exceptional results",
+      "Fully licensed and insured",
+    ],
+  },
   estimateCta: "Get an Estimate",
   description:
     "Your go-to for landscaping and lawn care in Indianapolis, Avon, Plainfield, and nearby areas — mowing, aeration, mulching, yard clean-up, and more.",

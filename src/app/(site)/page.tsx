@@ -1,13 +1,13 @@
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, MapPin, Phone } from "lucide-react";
+import { MapPin, Phone } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button-link";
+import { HomeServiceRow } from "@/components/home/home-service-row";
+import { HomeWhyChoose } from "@/components/home/home-why-choose";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { imageAssets } from "@/config/assets";
 import { siteConfig } from "@/config/site";
 import { featuredGallery } from "@/data/gallery";
 import { reviews } from "@/data/reviews";
-import { getServicesByGroup, serviceGroups } from "@/data/services";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
@@ -19,28 +19,22 @@ export const metadata = createPageMetadata({
 export default function HomePage() {
   return (
     <>
-      <section className="relative min-h-[78vh] overflow-hidden bg-leaf-soft text-white lg:min-h-[72vh]">
+      <section className="relative min-h-[52vh] overflow-hidden bg-evergreen-deep text-white sm:min-h-[58vh] lg:min-h-[64vh]">
         <Image
           src={imageAssets.hero}
-          alt="Landscaped backyard with mulched beds, healthy lawn, and mature trees"
+          alt="Professional landscaped lawn with stone edging and mulched planting beds"
           fill
           priority
-          className="object-cover object-center brightness-[1.08] saturate-[1.1] contrast-[1.02]"
+          className="object-cover object-center"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-evergreen-deep/65 via-evergreen-deep/30 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-evergreen-deep/55 via-transparent to-white/15" />
-        <div className="relative mx-auto flex min-h-[78vh] max-w-6xl flex-col justify-end px-4 pb-14 pt-28 sm:px-6 sm:pb-16 lg:min-h-[72vh]">
-          <p className="animate-fade-up text-sm font-semibold tracking-[0.18em] text-white uppercase drop-shadow-sm">
-            {siteConfig.positioning}
-          </p>
-          <h1 className="animate-fade-up-delay mt-4 max-w-3xl font-display text-4xl leading-[1.08] drop-shadow-md sm:text-5xl lg:text-6xl">
-            {siteConfig.tagline}
-          </h1>
-          <p className="animate-fade-up-delay mt-2 max-w-2xl font-display text-xl text-white/95 drop-shadow-sm sm:text-2xl">
+        <div className="absolute inset-0 bg-gradient-to-r from-evergreen-deep/75 via-evergreen-deep/35 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-evergreen-deep/50 via-transparent to-white/10" />
+        <div className="relative mx-auto flex min-h-[52vh] max-w-6xl flex-col justify-end px-4 pb-12 pt-28 sm:min-h-[58vh] sm:px-6 sm:pb-14 lg:min-h-[64vh]">
+          <h1 className="animate-fade-up max-w-2xl font-display text-3xl leading-tight font-semibold drop-shadow-md sm:text-4xl lg:text-5xl">
             {siteConfig.heroTitle}
-          </p>
-          <p className="animate-fade-up-delay-2 mt-5 max-w-xl text-base leading-relaxed text-white/95 drop-shadow-sm sm:text-lg">
+          </h1>
+          <p className="animate-fade-up-delay mt-4 max-w-xl text-base leading-relaxed text-white/95 drop-shadow-sm sm:text-lg">
             {siteConfig.description}
           </p>
           <div className="animate-fade-up-delay-2 mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
@@ -68,51 +62,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <Section className="bg-surface py-10 sm:py-12">
-        <div className="grid gap-8 sm:grid-cols-3">
-          {siteConfig.trust.map((item) => (
-            <div key={item.title}>
-              <p className="text-xs font-semibold tracking-[0.16em] text-leaf uppercase">
-                {item.title}
-              </p>
-              <p className="mt-2 text-sm leading-relaxed text-muted sm:text-base">
-                {item.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </Section>
+      <HomeServiceRow />
 
-      <Section>
-        <SectionHeading
-          eyebrow="Services"
-          title="Lawn care & landscaping"
-          description={`${siteConfig.legalName} — ${siteConfig.positioning}.`}
-        />
-        <div className="mt-10 grid gap-8 md:grid-cols-3">
-          {serviceGroups.map((group) => (
-            <div key={group.id} className="rounded-xl border border-border bg-surface p-6">
-              <h3 className="font-display text-xl text-evergreen-deep">{group.label}</h3>
-              <ul className="mt-4 space-y-2">
-                {getServicesByGroup(group.id).map((service) => (
-                  <li key={service.slug}>
-                    <Link
-                      href={`/services/${service.slug}`}
-                      className="inline-flex items-center gap-2 text-sm font-medium text-evergreen hover:text-leaf"
-                    >
-                      {service.name}
-                      <ArrowRight className="size-3.5" aria-hidden />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        <div className="mt-8">
-          <ButtonLink href="/request-estimate">{siteConfig.estimateCta}</ButtonLink>
-        </div>
-      </Section>
+      <HomeWhyChoose />
 
       <Section>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
@@ -127,7 +79,10 @@ export default function HomePage() {
         </div>
         <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
           {featuredGallery.slice(0, 6).map((image) => (
-            <div key={image.id} className="relative aspect-[4/5] overflow-hidden rounded-lg bg-sand">
+            <div
+              key={image.id}
+              className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-sand shadow-sm"
+            >
               <Image
                 src={image.src}
                 alt={image.alt}
@@ -150,10 +105,14 @@ export default function HomePage() {
           {reviews.map((review) => (
             <li
               key={review.id}
-              className="rounded-xl border border-border bg-surface p-6"
+              className="rounded-2xl border border-border bg-surface p-6"
             >
-              <p className="text-sm leading-relaxed text-muted">&ldquo;{review.body}&rdquo;</p>
-              <p className="mt-4 font-display text-lg text-evergreen-deep">{review.name}</p>
+              <p className="text-sm leading-relaxed text-muted">
+                &ldquo;{review.body}&rdquo;
+              </p>
+              <p className="mt-4 font-display text-lg text-evergreen-deep">
+                {review.name}
+              </p>
             </li>
           ))}
         </ul>
@@ -171,7 +130,7 @@ export default function HomePage() {
             title="Serving Your Community"
             description={siteConfig.serviceArea.note}
           />
-          <div className="rounded-xl border border-border bg-surface p-6">
+          <div className="rounded-2xl border border-border bg-surface p-6">
             <p className="text-xs font-semibold tracking-[0.16em] text-leaf uppercase">
               Serving
             </p>

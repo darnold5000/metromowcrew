@@ -20,7 +20,17 @@ export type Service = {
   seoTitle: string;
   seoDescription: string;
   relatedSlugs: string[];
+  /** Short pill label on home service row (e.g. MOW). */
+  homeCta?: string;
 };
+
+export const homeFeaturedServiceSlugs = [
+  "lawn-mowing",
+  "mulching",
+  "aeration",
+  "yard-clean-up",
+  "leaf-clean-up",
+] as const;
 
 const estimateProcess = [
   "Share the property address and the service you need",
@@ -68,6 +78,7 @@ export const services: Service[] = [
     image: imageAssets.projects.mowing,
     imageAlt: "Manicured residential lawn after mowing",
     status: "active",
+    homeCta: "Mow",
     relatedSlugs: ["aeration", "mulching", "yard-clean-up"],
   },
   {
@@ -81,6 +92,7 @@ export const services: Service[] = [
     image: imageAssets.projects.aeration,
     imageAlt: "Lawn aeration service in progress",
     status: "active",
+    homeCta: "Aerate",
     relatedSlugs: ["lawn-mowing", "mulching"],
   },
   {
@@ -94,6 +106,7 @@ export const services: Service[] = [
     image: imageAssets.projects.mulching,
     imageAlt: "Fresh mulch in landscaped planting beds",
     status: "active",
+    homeCta: "Mulch",
     relatedSlugs: ["yard-clean-up", "lawn-mowing"],
   },
   {
@@ -107,6 +120,7 @@ export const services: Service[] = [
     image: imageAssets.projects.yardCleanup,
     imageAlt: "Residential yard after clean-up",
     status: "active",
+    homeCta: "Yard",
     relatedSlugs: ["leaf-clean-up", "lawn-mowing"],
   },
   {
@@ -120,6 +134,7 @@ export const services: Service[] = [
     image: imageAssets.projects.leafCleanup,
     imageAlt: "Leaf clean-up on a residential lawn",
     status: "active",
+    homeCta: "Leaves",
     relatedSlugs: ["yard-clean-up", "lawn-mowing"],
   },
   {
@@ -147,4 +162,10 @@ export function getActiveServices(): Service[] {
 
 export function getServicesByGroup(group: Service["group"]): Service[] {
   return getActiveServices().filter((s) => s.group === group);
+}
+
+export function getHomeFeaturedServices(): Service[] {
+  return homeFeaturedServiceSlugs
+    .map((slug) => getServiceBySlug(slug))
+    .filter((s): s is Service => s !== undefined && s.status === "active");
 }
