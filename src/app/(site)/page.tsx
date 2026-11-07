@@ -19,46 +19,38 @@ export const metadata = createPageMetadata({
 export default function HomePage() {
   return (
     <>
-      <section className="relative min-h-[52vh] overflow-hidden bg-evergreen-deep text-white sm:min-h-[58vh] lg:min-h-[64vh]">
-        <Image
-          src={imageAssets.hero}
-          alt="Professional landscaped lawn with stone edging and mulched planting beds"
-          fill
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-evergreen-deep/75 via-evergreen-deep/35 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-evergreen-deep/50 via-transparent to-white/10" />
-        <div className="relative mx-auto flex min-h-[52vh] max-w-6xl flex-col justify-end px-4 pb-12 pt-28 sm:min-h-[58vh] sm:px-6 sm:pb-14 lg:min-h-[64vh]">
-          <h1 className="animate-fade-up max-w-2xl font-display text-3xl leading-tight font-semibold drop-shadow-md sm:text-4xl lg:text-5xl">
-            {siteConfig.heroTitle}
-          </h1>
-          <p className="animate-fade-up-delay mt-4 max-w-xl text-base leading-relaxed text-white/95 drop-shadow-sm sm:text-lg">
-            {siteConfig.description}
-          </p>
-          <div className="animate-fade-up-delay-2 mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-            <ButtonLink href={siteConfig.quoteHref}>{siteConfig.estimateCta}</ButtonLink>
-            <ButtonLink
-              href={siteConfig.contactHref}
-              variant="secondary"
-              className="border-white/40 bg-white/20 text-white shadow-sm backdrop-blur-sm hover:bg-white/30"
-            >
-              {siteConfig.contactCta}
-            </ButtonLink>
-            <ButtonLink
-              href={siteConfig.phoneHref}
-              variant="secondary"
-              className="border-white/40 bg-white/20 text-white shadow-sm backdrop-blur-sm hover:bg-white/30"
-            >
-              <Phone className="mr-2 size-4" aria-hidden />
-              {siteConfig.phoneDisplay}
-            </ButtonLink>
+      <section className="overflow-hidden bg-white">
+        <div className="relative aspect-[1024/367] w-full max-h-[min(48vh,520px)] min-h-[12.5rem] sm:min-h-[16rem]">
+          <Image
+            src={imageAssets.hero}
+            alt="Leading the Way in Lawn Care and Landscaping — manicured lawn and landscaped beds"
+            fill
+            priority
+            className="object-cover object-center brightness-105 saturate-[1.05]"
+            sizes="100vw"
+          />
+        </div>
+        <div className="border-b border-border/50 bg-gradient-to-b from-white via-white to-sand/50">
+          <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
+            <h1 className="sr-only">{siteConfig.heroTitle}</h1>
+            <p className="max-w-2xl text-base leading-relaxed text-evergreen sm:text-lg">
+              {siteConfig.description}
+            </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+              <ButtonLink href={siteConfig.quoteHref}>{siteConfig.estimateCta}</ButtonLink>
+              <ButtonLink href={siteConfig.contactHref} variant="secondary">
+                {siteConfig.contactCta}
+              </ButtonLink>
+              <ButtonLink href={siteConfig.phoneHref} variant="secondary">
+                <Phone className="mr-2 size-4" aria-hidden />
+                {siteConfig.phoneDisplay}
+              </ButtonLink>
+            </div>
+            <p className="mt-5 inline-flex items-center gap-2 text-sm text-muted">
+              <MapPin className="size-4 text-leaf" aria-hidden />
+              Serving {siteConfig.serviceArea.cities.join(" • ")}
+            </p>
           </div>
-          <p className="mt-6 inline-flex items-center gap-2 text-sm text-white/90 drop-shadow-sm">
-            <MapPin className="size-4" aria-hidden />
-            Serving {siteConfig.serviceArea.cities.join(" • ")}
-          </p>
         </div>
       </section>
 
